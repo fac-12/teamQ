@@ -4,7 +4,8 @@
   "description": "Lucy, Fatimat, Mohamed, Shannon Week 3 Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "precommit": "lint-staged",
+      "test": "tape ./tests/*.test.js | tap-spec"
   },
   "repository": {
     "type": "git",
