@@ -42,7 +42,8 @@ var createQs = {
     }
 }
 
-function updateQuestions(apiObj,index) {
+function updateQuestions(apiObj,index=0) {
+  console.log(index)
     var header = document.getElementsByTagName('header')[0];
     header.replaceChild(createQs.drawHeader(index),header.lastElementChild);
     var main = document.getElementsByTagName('main')[0];

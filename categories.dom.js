@@ -5,6 +5,8 @@ var cat4 = document.querySelector('.cat-4');
 var cat5 = document.querySelector('.cat-5');
 var cat6 = document.querySelector('.cat-6');
 
+var sessionToken = "";
+
 var categories = {
   "General Knowledge": 9,
   "Television": 14,
@@ -59,16 +61,34 @@ cat4.addEventListener('click', getQuiz);
 cat5.addEventListener('click', getQuiz);
 cat6.addEventListener('click', getQuiz);
 
-function getQuiz(e){
+function request(url, callback) {
   var xhr = new XMLHttpRequest();
-  var url = 'https:\//opentdb.com/api.php?amount=5&category='+ categories[e.target.textContent.toString()] +'&difficulty=easy&type=multiple';
-    console.log(e);
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      var quizObject = JSON.parse(xhr.responseText);
-      updateQuestions(quizObject,0);
+      var result = JSON.parse(xhr.responseText);
+      callback(result);
     }
-  };
+  }
   xhr.open("GET", url, true);
   xhr.send();
+}
+
+function getQuiz(e) {
+  console.log("1" + e);
+  if (!sessionToken) {
+    request("https://opentdb.com/api_token.php?command=request", function(result) {
+      sessionToken = result.token;
+    });
+  }
+  var url = 'https:\//opentdb.com/api.php?amount=5&category=' + categories[e.target.textContent.toString()] + '&difficulty=easy&type=multiple&token=' + sessionToken;
+  request(url, function(result) {
+    if (result.response_code == 4) {
+      request("https://opentdb.com/api_token.php?command=reset&token="+sessionToken, function(result) {
+        getQuiz(e);
+      });
+    } else {
+      updateQuestions(result);
+    }
+
+  })
 }
