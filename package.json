@@ -1,0 +1,26 @@
+{
+  "name": "teamq",
+  "version": "1.0.0",
+  "description": "Lucy, Fatimat, Mohamed, Shannon Week 3 Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac-12/teamQ.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac-12/teamQ/issues"
+  },
+  "homepage": "https://github.com/fac-12/teamQ#readme",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "prettier": "^1.8.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0"
+  }
+}
