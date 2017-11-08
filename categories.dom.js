@@ -67,8 +67,12 @@ function getQuiz(e){
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var quizObject = JSON.parse(xhr.responseText);
+<<<<<<< HEAD
       console.log(quizObject);
       updateQuestions(quizObject, 0);
+=======
+      updateQuestions(quizObject,0);
+>>>>>>> master
     }
   };
   xhr.open("GET", url, true);
