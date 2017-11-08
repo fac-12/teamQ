@@ -3,9 +3,9 @@ var correctAns = 0;
 var createQs = {
     drawHeader: function(num) {
         var headerNode = document.createElement('h2');
-        var textNode = document.createTextNode('Question #' + num+1);
+        var textNode = document.createTextNode('Question #' + (num+1));
         headerNode.appendChild(textNode);
-        headerNode.className = 'question_header'; 
+        headerNode.className = 'question_header';
         return headerNode;
     },
 
@@ -15,7 +15,7 @@ var createQs = {
         questionNode.appendChild(textNode);
         questionNode.className = 'question_text';
         return questionNode;
-    }, 
+    },
 
     drawAnswersForm: function(arr) {
         var formNode = document.createElement('form');
@@ -24,6 +24,7 @@ var createQs = {
             inputNode.setAttribute('type','radio');
             inputNode.setAttribute('name','selection');
             inputNode.setAttribute('id','item_'+index);
+            inputNode.setAttribute('value',item)
             inputNode.className = 'question_answerOption';
             var labelNode = document.createElement('label');
             labelNode.setAttribute('for','item_'+index);
@@ -51,9 +52,15 @@ function updateQuestions(apiObj,index) {
     };
     main.appendChild(createQs.drawQuestion(questionFunc.getQuestion(apiObj,index)));
     main.appendChild(createQs.drawAnswersForm(questionFunc.getAnswers(apiObj,index)));
-    var getButton = document.getElementsByClassName('question_nextButton')[0];
-    getButton.addEventListener('click',function(e) {
+    main.addEventListener('submit',function(e) {
         e.preventDefault();
-        console.log(e.target);
+        if(questionFunc.checkCorrectAns(apiObj, index, e.target['selection'].value)){
+          correctAns++;
+        }
+        if(index<(apiObj.results.length-1)){
+          updateQuestions(apiObj, index+1)
+        } else{
+          //
+        }
     });
 }

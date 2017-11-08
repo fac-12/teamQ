@@ -27,7 +27,7 @@ var questionFunc = {
     var correct = obj.results[index].correct_answer;
     return this.answersArray(incorrect, correct);
   },
-  checkCorrectAns: function(option){
+  checkCorrectAns: function(obj, index, option){
       var correct = this.decodeText(obj.results[index].correct_answer);
       if(option === correct){
         return true;
