@@ -16,37 +16,38 @@ var categories = {
   "Celebrities": 26
 }
 
-// var categories = {
-//
-// createHeaderCategories: function() {
-//   var title = document.createTextNode('Quiz');
-//   var header = document.querySelector('header');
-//   header.classList = "categoriesTitle";
-//   header.appendChild(title);
-// }
-//
-// createCategorySections: function() {
-//
-// }
-//
-// addEventListenerCategories: function() {
-//
-// }
-//
-// selectCategory: function(){
-//   var xhr = new XMLHttpRequest();
-//   var url = 'https:\//opentdb.com/api.php?amount=5&category='+ categories[e.target.textContent.toString()] +'&difficulty=easy&type=multiple';
-//     console.log(e);
-//   xhr.onreadystatechange = function() {
-//     if (xhr.readyState == 4 && xhr.status == 200) {
-//       var quizObject = JSON.parse(xhr.responseText);
-//       console.log(quizObject);
-//       return quizObject;
-//     }
-//   };
-//   xhr.open("GET", url, true);
-//   xhr.send();
-// }
+// // var categories = {
+// //
+// // createHeaderCategories: function() {
+// //   var title = document.createTextNode('Quiz');
+// //   var header = document.querySelector('header');
+// //   header.classList = "categoriesTitle";
+// //   header.appendChild(title);
+// // }
+// //
+// // createCategorySections: function() {
+// //   var category = document.createElement('section');
+// //   category.textContent = ca
+// // }
+// //
+// // addEventListenerCategories: function() {
+// //
+// // }
+// //
+// // selectCategory: function(){
+// //   var xhr = new XMLHttpRequest();
+// //   var url = 'https:\//opentdb.com/api.php?amount=5&category='+ categories[e.target.textContent.toString()] +'&difficulty=easy&type=multiple';
+// //     console.log(e);
+// //   xhr.onreadystatechange = function() {
+// //     if (xhr.readyState == 4 && xhr.status == 200) {
+// //       var quizObject = JSON.parse(xhr.responseText);
+// //       console.log(quizObject);
+// //       return quizObject;
+// //     }
+// //   };
+// //   xhr.open("GET", url, true);
+// //   xhr.send();
+// // }
 //
 //
 //
