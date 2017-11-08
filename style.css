@@ -1,3 +1,13 @@
 * {
     box-sizing: border-box;
 }
+.container {
+  display: flex;
+}
+
+.container section {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
