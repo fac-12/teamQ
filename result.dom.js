@@ -1,7 +1,7 @@
   var container = document.querySelector('.container');
   var result = {
 
-  createHeader: function(){
+  createHeaderResults: function(){
     var title = document.createTextNode('Result');
     var header = document.querySelector('header');
     header.classList = "resultTitle";
