@@ -60,7 +60,7 @@ function updateQuestions(apiObj,index) {
         if(index<(apiObj.results.length-1)){
           updateQuestions(apiObj, index+1)
         } else{
-          //
+          resultPage.updateDom();
         }
     });
 }
