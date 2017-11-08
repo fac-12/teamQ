@@ -29,7 +29,7 @@ function getQuiz(e){
     if (xhr.readyState == 4 && xhr.status == 200) {
       var quizObject = JSON.parse(xhr.responseText);
       console.log(quizObject);
-      return quizObject;
+      updateQuestions(quizObject,0);
     }
   };
   xhr.open("GET", url, true);

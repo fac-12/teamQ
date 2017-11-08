@@ -1,7 +1,9 @@
+var correctAns = 0;
+
 var createQs = {
     drawHeader: function(num) {
         var headerNode = document.createElement('h2');
-        var textNode = document.createTextNode('Question #' + num);
+        var textNode = document.createTextNode('Question #' + num+1);
         headerNode.appendChild(textNode);
         headerNode.className = 'question_header'; 
         return headerNode;
@@ -20,22 +22,38 @@ var createQs = {
         arr.forEach(function(item, index) {
             var inputNode = document.createElement('input');
             inputNode.setAttribute('type','radio');
+            inputNode.setAttribute('name','selection');
             inputNode.setAttribute('id','item_'+index);
             inputNode.className = 'question_answerOption';
             var labelNode = document.createElement('label');
             labelNode.setAttribute('for','item_'+index);
             var textNode = document.createTextNode(item);
+            labelNode.appendChild(inputNode);
             labelNode.appendChild(textNode);
             formNode.appendChild(labelNode);
-            formNode.appendChild(inputNode);
         });
-        var submitNode = document.createElement('input');
-        submitNode.setAttribute('type','submit');
+        var submitNode = document.createElement('button');
+        submitNode.className = "question_nextButton";
+        var textNode = document.createTextNode('Next');
+        submitNode.appendChild(textNode);
         formNode.appendChild(submitNode);
         return formNode;
     }
 }
 
-function updateQuestions(apiObj) {
-    
+function updateQuestions(apiObj,index) {
+    var header = document.getElementsByTagName('header')[0];
+    header.replaceChild(createQs.drawHeader(index),header.lastElementChild);
+    var main = document.getElementsByTagName('main')[0];
+    main.classList.add("question_container");
+    while (main.firstChild) {
+        main.removeChild(main.firstChild)
+    };
+    main.appendChild(createQs.drawQuestion(questionFunc.getQuestion(apiObj,index)));
+    main.appendChild(createQs.drawAnswersForm(questionFunc.getAnswers(apiObj,index)));
+    var getButton = document.getElementsByClassName('question_nextButton')[0];
+    getButton.addEventListener('click',function(e) {
+        e.preventDefault();
+        console.log(e.target);
+    });
 }

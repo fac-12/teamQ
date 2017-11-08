@@ -11,3 +11,12 @@
   height: 100px;
   margin: 10px;
 }
+
+.question_container {
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
