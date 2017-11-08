@@ -1,11 +1,12 @@
   var container = document.querySelector('.container');
-  var result = {
+  var resultPage = {
 
   createHeaderResults: function(){
     var title = document.createTextNode('Result');
     var header = document.querySelector('header');
     header.classList = "resultTitle";
     header.appendChild(title);
+    return header;
   },
 
   createGIF: function(correctAns){
@@ -50,6 +51,26 @@
   },
 
     createRestartButton: function(){
+      var restart = document.createElement('button');
+      restart.classList = "resetButton";
+      var restartText = document.createTextNode('Another quiz!');
+      restart.appendChild(restartText);
+      restart.addEventListener('click', function(){
+        location.reload();
+      });
+      container.appendChild(restart);
+  },
 
-  }
+     updateDom: function(){
+    var main = document.querySelector('main');
+    while (main.firstChild) {
+        main.removeChild(main.firstChild)
+    };
+    resultPage.createHeaderResults();
+    resultPage.displayResult(correctAns);
+    resultPage.createGIF(correctAns);
+    resultPage.createRestartButton();
+}
+
+
 }
