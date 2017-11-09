@@ -1,15 +1,46 @@
-var correctAns = 0;
+var questionsPage = {
 
-var createQs = {
-    drawHeader: function(num) {
-        var headerNode = document.createElement('h2');
-        var textNode = document.createTextNode('Question #' + (num+1));
-        headerNode.appendChild(textNode);
-        headerNode.className = 'question_header';
-        return headerNode;
+    decodeText: function (text) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = text;
+        return txt.value;
     },
 
-    drawQuestion: function(str) {
+    answersArray: function (incorrect, correct) {
+        var orderedArray = incorrect.concat(correct);
+        var random = Math.floor(Math.random() * orderedArray.length);
+        var randomArray = [];
+        for (var i = 0; i < orderedArray.length; i++) {
+            randomArray[i] = this.decodeText(orderedArray[random]);
+            if ((random + 1) < 4) {
+                random++
+            } else {
+                random = random + 1 - orderedArray.length
+            }
+        }
+        return randomArray
+    },
+
+    getQuestion: function (obj, index) {
+        return this.decodeText(obj.results[index].question);
+    },
+
+    getAnswers: function (obj, index) {
+        var incorrect = obj.results[index].incorrect_answers;
+        var correct = obj.results[index].correct_answer;
+        return this.answersArray(incorrect, correct);
+    },
+
+    checkCorrectAns: function (obj, index, option) {
+        var correct = this.decodeText(obj.results[index].correct_answer);
+        if (option === correct) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    drawQuestion: function (str) {
         var questionNode = document.createElement('h3');
         var textNode = document.createTextNode(str);
         questionNode.appendChild(textNode);
@@ -17,17 +48,17 @@ var createQs = {
         return questionNode;
     },
 
-    drawAnswersForm: function(arr) {
+    drawAnswersForm: function (arr) {
         var formNode = document.createElement('form');
-        arr.forEach(function(item, index) {
+        arr.forEach(function (item, index) {
             var inputNode = document.createElement('input');
-            inputNode.setAttribute('type','radio');
-            inputNode.setAttribute('name','selection');
-            inputNode.setAttribute('id','item_'+index);
-            inputNode.setAttribute('value',item)
+            inputNode.setAttribute('type', 'radio');
+            inputNode.setAttribute('name', 'selection');
+            inputNode.setAttribute('id', 'item_' + index);
+            inputNode.setAttribute('value', item)
             inputNode.className = 'question_answerOption';
             var labelNode = document.createElement('label');
-            labelNode.setAttribute('for','item_'+index);
+            labelNode.setAttribute('for', 'item_' + index);
             var textNode = document.createTextNode(item);
             labelNode.appendChild(inputNode);
             labelNode.appendChild(textNode);
@@ -39,29 +70,26 @@ var createQs = {
         submitNode.appendChild(textNode);
         formNode.appendChild(submitNode);
         return formNode;
-    }
-}
+    }, 
 
-function updateQuestions(apiObj,index=0) {
-  console.log(index)
-    var header = document.getElementsByTagName('header')[0];
-    header.replaceChild(createQs.drawHeader(index),header.lastElementChild);
-    var main = document.getElementsByTagName('main')[0];
-    main.classList.add("question_container");
-    while (main.firstChild) {
-        main.removeChild(main.firstChild)
-    };
-    main.appendChild(createQs.drawQuestion(questionFunc.getQuestion(apiObj,index)));
-    main.appendChild(createQs.drawAnswersForm(questionFunc.getAnswers(apiObj,index)));
-    main.addEventListener('submit',function(e) {
-        e.preventDefault();
-        if(questionFunc.checkCorrectAns(apiObj, index, e.target['selection'].value)){
-          correctAns++;
-        }
-        if(index<(apiObj.results.length-1)){
-          updateQuestions(apiObj, index+1)
-        } else{
-          resultPage.updateDom();
-        }
-    });
-}
+    updateQuestions: function(apiObj, catId, index) {
+        domNodes = helper.clearDom();
+        domNodes[0].appendChild(helper.drawSubHeader("Question #" + (index + 1)));
+        domNodes[1].className = "question_container";
+        domNodes[1].appendChild(questionsPage.drawQuestion(questionsPage.getQuestion(apiObj, index)));
+        var replyForm = domNodes[1].appendChild(questionsPage.drawAnswersForm(questionsPage.getAnswers(apiObj, index)));
+        replyForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var targetEntry = helper.findObj('id', catId)
+            if (questionsPage.checkCorrectAns(apiObj, index, e.target['selection'].value)) {
+                targetEntry.score = parseInt(targetEntry.score) + 1;
+            }
+            if (index < (apiObj.results.length - 1)) {
+    
+                questionsPage.updateQuestions(apiObj, catId, (index + 1))
+            } else {
+                resultPage.updateDom(targetEntry.score);
+            }
+        });
+    }
+};

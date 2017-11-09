@@ -1,95 +1,88 @@
-var cat1 = document.querySelector('.cat-1');
-var cat2 = document.querySelector('.cat-2');
-var cat3 = document.querySelector('.cat-3');
-var cat4 = document.querySelector('.cat-4');
-var cat5 = document.querySelector('.cat-5');
-var cat6 = document.querySelector('.cat-6');
-
+//global variables
+var categories = [
+  {name: 'General Knowledge', id: 9, score: 0},
+  {name: 'Television', id: 14, score: 0},
+  {name: 'Science and Nature', id: 17, score: 0},
+  {name: 'Computer Science', id: 18, score: 0},
+  {name: 'Sports', id: 21, score: 0},
+  {name: 'Celebrities', id: 26, score: 0}
+];
+var numQuestions = 5;
 var sessionToken = "";
 
-var categories = {
-  "General Knowledge": 9,
-  "Television": 14,
-  "Science and Nature": 17,
-  "Computer Science": 18,
-  "Sports": 21,
-  "Celebrities": 26
-}
+//Draws the home page with quiz categories
+function drawCatPage() {
+  var domNodes = helper.clearDom();
+  domNodes[0].appendChild(helper.drawSubHeader("Select a category"));
+  domNodes[1].appendChild(drawCategories(categories));
+};
 
-// // var categories = {
-// //
-// // createHeaderCategories: function() {
-// //   var title = document.createTextNode('Quiz');
-// //   var header = document.querySelector('header');
-// //   header.classList = "categoriesTitle";
-// //   header.appendChild(title);
-// // }
-// //
-// // createCategorySections: function() {
-// //   var category = document.createElement('section');
-// //   category.textContent = ca
-// // }
-// //
-// // addEventListenerCategories: function() {
-// //
-// // }
-// //
-// // selectCategory: function(){
-// //   var xhr = new XMLHttpRequest();
-// //   var url = 'https:\//opentdb.com/api.php?amount=5&category='+ categories[e.target.textContent.toString()] +'&difficulty=easy&type=multiple';
-// //     console.log(e);
-// //   xhr.onreadystatechange = function() {
-// //     if (xhr.readyState == 4 && xhr.status == 200) {
-// //       var quizObject = JSON.parse(xhr.responseText);
-// //       console.log(quizObject);
-// //       return quizObject;
-// //     }
-// //   };
-// //   xhr.open("GET", url, true);
-// //   xhr.send();
-// // }
-//
-//
-//
-// }
-
-
-
-cat1.addEventListener('click', getQuiz);
-cat2.addEventListener('click', getQuiz);
-cat3.addEventListener('click', getQuiz);
-cat4.addEventListener('click', getQuiz);
-cat5.addEventListener('click', getQuiz);
-cat6.addEventListener('click', getQuiz);
-
-function request(url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var result = JSON.parse(xhr.responseText);
-      callback(result);
+//Function takes category array as input and outputs single node containing category buttons as child nodes
+function drawCategories(catArr) {
+  //create container node to attach to main element
+  var flexContainer = document.createElement('div');
+  flexContainer.className = 'home-flex-container';
+  //create each category button by looping through category array
+  catArr.forEach(function(item) {
+    //create button element and set id equal to category id
+    var catButton = document.createElement('button');
+    catButton.className = 'home-cat-button';
+    catButton.setAttribute('id',item.id);
+    //create category title and append to button
+    var catTitle = document.createElement('h4');
+    var catTitleText = document.createTextNode(item.name);
+    catTitle.appendChild(catTitleText);
+    catButton.appendChild(catTitle);
+    //create category score and append to button if greater than 0
+    if (item.score > 0) {
+      var catScore = document.createElement('p');
+      var catScoreText = document.createTextNode(item.score+'/'+numQuestions);
+      catScore.appendChild(catScoreText);
+      catButton.appendChild(catScore);
     }
-  }
-  xhr.open("GET", url, true);
-  xhr.send();
+    //create button listener
+    catButton.addEventListener('click', function(e) {
+      getQuiz(e.currentTarget.id);
+    })
+    //append button to container node
+    flexContainer.appendChild(catButton);
+  });
+  return flexContainer;
 }
 
-function getQuiz(e) {
-  console.log("1" + e);
+//Clear Dom, load waiting message, check on session token and load quiz
+function getQuiz(id) {
+  //clear page
+  domNodes = helper.clearDom();
+  //create waiting subheader
+  domNodes[0].appendChild(helper.drawSubHeader('Please wait...'));
+  //reset score for category to 0
+  helper.findObj('id',id).score = 0;
+  //if no session token then get one then load quiz, or just load quiz
   if (!sessionToken) {
-    request("https://opentdb.com/api_token.php?command=request", function(result) {
+    helper.request("https://opentdb.com/api_token.php?command=request", function(result) {
       sessionToken = result.token;
+      var url = 'https://opentdb.com/api.php?amount=' + numQuestions + '&category=' + id + '&difficulty=easy&type=multiple&token=' + sessionToken;
+      loadQuiz(url,id);
     });
+  } else {
+    var url = 'https://opentdb.com/api.php?amount=' + numQuestions + '&category=' + id + '&difficulty=easy&type=multiple&token=' + sessionToken;
+    loadQuiz(url,id);
   }
-  var url = 'https:\//opentdb.com/api.php?amount=5&category=' + categories[e.target.textContent.toString()] + '&difficulty=easy&type=multiple&token=' + sessionToken;
-  request(url, function(result) {
+}
+
+function loadQuiz(url,id) {
+  //make xhr request then update questions once data loaded
+  helper.request(url, function(result) {
+    //if session token used up then reset it and fetch data anew
     if (result.response_code == 4) {
-      request("https://opentdb.com/api_token.php?command=reset&token="+sessionToken, function(result) {
-        getQuiz(e);
+      helper.request("https://opentdb.com/api_token.php?command=reset&token="+sessionToken, function(result) {
+        getQuiz(id);
       });
     } else {
-      updateQuestions(result);
+      questionsPage.updateQuestions(result, id, 0);
     }
-
-  })
+  });
 }
+
+drawCatPage();
