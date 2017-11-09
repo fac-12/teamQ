@@ -1,13 +1,13 @@
 * {
     box-sizing: border-box;
     margin: 0 auto;
+    font-family: 'Oxygen', sans-serif;
 }
 
 header {
-  padding-top: 20px;
   padding-left: 20px;
-  height: 10vh;
-  font-family: 'Oxygen', sans-serif;
+  margin-bottom: 10px;
+  color: #F5A623;
 }
 
 .container {
@@ -15,31 +15,24 @@ header {
   justify-content: center;
   align-items: center;
   background: rgba(165,222,255,0.5);
-  padding: 20px;
-  height: 80vh;
+  padding: 1rem 5rem;
 }
-
-
 
 .home-flex-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 60rem;
-  min-width: 592px;
 }
 
 .home-flex-container button {
   background-color: #ffffff;
-  border-radius: 20%;
-  width: 15rem;
-  height: 15rem;
-  margin: 1rem;
+  margin: 0.5rem;
+  padding: 1rem;
   cursor: pointer;
-  font-size: 2rem;
-  font-family: 'Oxygen', sans-serif;
+  width: 15rem;
+  font-size: 1rem;
+  border-radius: 1rem;
 }
 
 .home-flex-container button:nth-child(1) {
@@ -65,6 +58,7 @@ header {
 .question_container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-align: center;
   width: 100%;
   margin: 0 auto;
@@ -82,7 +76,7 @@ header {
   text-align: left;
   padding-left: 2%;
   color: #F5A623;
-  height: 10vh;
+  margin: 1rem 0;
 }
 .question_label {
   background-color: #ffffff;
@@ -108,20 +102,24 @@ header {
   cursor: pointer;
   font-size: 1.3rem;
   padding: 0.8rem;
+  border: 2px solid #50E3C2;
 }
 @media screen and (min-height: 600px){
   .question_container {
     height: 80vh;
   }
+  .container{
+    height: 85vh;
+  }
 }
-/*
-.question_nextButton{
-  align-self: flex-end;
-  padding: 10px;
-  font-size: 1.2rem;
-  border: 2px solid #50E3C2;
-  background: white;
-  margin-right: 12%;
-  margin-top: 10%;
-  border-radius: 10px;
-}*/
+@media screen and (min-width: 600px){
+  .home-flex-container button {
+    width: 20rem;
+    padding: 1.6rem 4rem;
+  }
+}
+@media screen and (min-width: 850px){
+  .home-flex-container button {
+    padding: 4rem;
+  }
+}
