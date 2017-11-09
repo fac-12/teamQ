@@ -1,6 +1,6 @@
 //universal helper functions
 var helper = {
-  
+
   //return the object in array with specified id (for setting score etc)
   findObj: function(key,val) {
     return categories.find(function(item) {
@@ -28,7 +28,7 @@ var helper = {
     headerNode.appendChild(textNode);
     headerNode.className = 'subheader';
     return headerNode;
-  }, 
+  },
 
   //make xhr request
   request: function(url, callback) {

@@ -13,7 +13,11 @@ var sessionToken = "";
 //Draws the home page with quiz categories
 function drawCatPage() {
   var domNodes = helper.clearDom();
-  domNodes[0].appendChild(helper.drawSubHeader("Select a category"));
+  var subHead = helper.drawSubHeader("Select a category");
+  var quizHead = document.createElement('h1');
+  quizHead.textContent = "Quiz";
+  quizHead.appendChild(subHead);
+  domNodes[0].appendChild(quizHead);
   domNodes[1].appendChild(drawCategories(categories));
 };
 
