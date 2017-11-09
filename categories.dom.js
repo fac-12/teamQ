@@ -14,10 +14,9 @@ var sessionToken = "";
 function drawCatPage() {
   var domNodes = helper.clearDom();
   var subHead = helper.drawSubHeader("Select a category");
-  var quizHead = document.createElement('h1');
-  quizHead.textContent = "Quiz";
-  quizHead.appendChild(subHead);
+  var quizHead = helper.createNode('h1','Quiz','')
   domNodes[0].appendChild(quizHead);
+  domNodes[0].appendChild(subHead);
   domNodes[1].appendChild(drawCategories(categories));
 };
 

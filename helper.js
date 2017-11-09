@@ -12,8 +12,8 @@ var helper = {
   clearDom: function() {
     var headerNode = document.querySelector('header');
     var mainNode = document.querySelector('main');
-    while (headerNode.childElementCount>1) {
-      headerNode.removeChild(headerNode.lastElementChild);
+    while (headerNode.firstChild) {
+      headerNode.removeChild(headerNode.firstChild);
     }
     while (mainNode.firstChild) {
       mainNode.removeChild(mainNode.firstChild);
@@ -36,12 +36,20 @@ var helper = {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
         var result = JSON.parse(xhr.responseText);
-        console.log(result.response_code);
         callback(result);
       }
     };
     xhr.open("GET", url, true);
     xhr.send();
+  }, 
+
+  //create and return node with specified text and class
+  createNode: function(type,text,className) {
+    var node = document.createElement(type);
+    var textNode = document.createTextNode(text);
+    node.appendChild(textNode);
+    node.className = className;
+    return node;
   }
 };
 
