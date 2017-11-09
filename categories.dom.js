@@ -61,7 +61,7 @@ function getQuiz(id) {
   //create waiting subheader
   domNodes[0].appendChild(helper.drawSubHeader('Please wait...'));
   //reset score for category to 0
-  helper.findObj('id',id).score = 0;
+  helper.findObj(categories,'id',id).score = 0;
   //if no session token then get one then load quiz, or just load quiz
   if (!sessionToken) {
     helper.request("https://opentdb.com/api_token.php?command=request", function(result) {

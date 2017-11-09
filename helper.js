@@ -2,8 +2,8 @@
 var helper = {
 
   //return the object in array with specified id (for setting score etc)
-  findObj: function(key,val) {
-    return categories.find(function(item) {
+  findObj: function(arr, key,val) {
+    return arr.find(function(item) {
       return item[key] == val;
     });
   },
@@ -44,3 +44,7 @@ var helper = {
     xhr.send();
   }
 };
+
+if (typeof module !== 'undefined') {
+  module.exports = helper;
+}

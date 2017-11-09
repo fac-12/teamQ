@@ -13,12 +13,12 @@ var questionsPage = {
         for (var i = 0; i < orderedArray.length; i++) {
             randomArray[i] = this.decodeText(orderedArray[random]);
             if ((random + 1) < 4) {
-                random++
+                random++;
             } else {
-                random = random + 1 - orderedArray.length
+                random = random + 1 - orderedArray.length;
             }
         }
-        return randomArray
+        return randomArray;
     },
 
     getQuestion: function (obj, index) {
@@ -83,7 +83,7 @@ var questionsPage = {
         var replyForm = domNodes[1].appendChild(questionsPage.drawAnswersForm(questionsPage.getAnswers(apiObj, index)));
         replyForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            var targetEntry = helper.findObj('id', catId)
+            var targetEntry = helper.findObj(categories,'id', catId)
             if (questionsPage.checkCorrectAns(apiObj, index, e.target['selection'].value)) {
                 targetEntry.score = parseInt(targetEntry.score) + 1;
             }
