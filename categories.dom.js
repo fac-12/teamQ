@@ -13,7 +13,7 @@ var sessionToken = "";
 //Draws the home page with quiz categories
 function drawCatPage() {
   var domNodes = helper.clearDom();
-  var subHead = helper.drawSubHeader("Select a category");
+  var subHead = helper.createNode('h2','Select a category','subheader');
   var quizHead = helper.createNode('h1','Quiz','')
   domNodes[0].appendChild(quizHead);
   domNodes[0].appendChild(subHead);
@@ -58,7 +58,7 @@ function getQuiz(id) {
   //clear page
   domNodes = helper.clearDom();
   //create waiting subheader
-  domNodes[0].appendChild(helper.drawSubHeader('Please wait...'));
+  domNodes[0].appendChild(helper.createNode('h2','Please wait...','subheader'));
   //reset score for category to 0
   helper.findObj(categories,'id',id).score = 0;
   //if no session token then get one then load quiz, or just load quiz

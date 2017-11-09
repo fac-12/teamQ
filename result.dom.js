@@ -62,12 +62,10 @@
 
     updateDom: function (correctAns) {
       var domNodes = helper.clearDom();
-      domNodes[0].appendChild(helper.drawSubHeader("Results"));
+      domNodes[0].appendChild(helper.createNode('h2','Results','results_title'));
       domNodes[1].className = "container";
       resultPage.displayResult(correctAns);
       resultPage.createGIF(correctAns);
       resultPage.createRestartButton();
     }
-
-
   };

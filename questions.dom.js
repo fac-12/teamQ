@@ -69,8 +69,7 @@ var questionsPage = {
 
     updateQuestions: function(apiObj, catId, index) {
         domNodes = helper.clearDom();
-        var questionheader = helper.drawSubHeader("Question #" + (index + 1));
-        questionheader.classList.add("question_header");
+        var questionheader = helper.createNode('h2','Question #' + (index + 1),'question_header');
         domNodes[0].appendChild(questionheader);
         domNodes[1].className = "question_container";
         domNodes[1].appendChild(helper.createNode('h3',questionsPage.getQuestion(apiObj, index),'question_text'));
