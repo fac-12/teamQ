@@ -1,12 +1,20 @@
 * {
     box-sizing: border-box;
 }
-.container {
-  display: flex;
+header {
+  text-align: center;
 }
 
-.container section {
+.home-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-flex-container button {
   background-color: red;
+  border: 1px solid black;
   width: 100px;
   height: 100px;
   margin: 10px;
@@ -17,7 +25,7 @@
   flex-direction: column;
 }
 
-form {
+.question_container form {
   display: flex;
   flex-direction: column;
 }
