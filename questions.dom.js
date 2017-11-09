@@ -60,7 +60,10 @@ var questionsPage = {
             labelNode.appendChild(inputNode);
             labelNode.appendChild(textNode);
             formNode.appendChild(labelNode);
-            labelNode.className = "question_label"
+            labelNode.className = "question_label";
+            labelNode.addEventListener('click', function(){
+                labelNode.style.background = '#50E3C2';
+            })
         });
         var submitNode = helper.createNode('button','Next','question_nextButton');
         formNode.appendChild(submitNode);
