@@ -1,4 +1,5 @@
   var container = document.querySelector('.container');
+
   var resultPage = {
 
     // createHeaderResults: function () {
@@ -8,8 +9,19 @@
     //   header.appendChild(title);
     //   return header;
     // },
-
+    createRestartButton: function () {
+      var restart = document.createElement('button');
+      restart.classList = "resetButton";
+      var restartText = document.createTextNode('Another quiz!');
+      restart.appendChild(restartText);
+      restart.addEventListener('click', function () {
+          container.classList.remove("result_container");
+        drawCatPage();
+      });
+      container.appendChild(restart);
+    },
     createGIF: function (correctAns) {
+        container.classList.add("result_container");
       var gifKey = '';
       if (correctAns === 0 | correctAns === 1 | correctAns === 2) {
         gifKey = 'are+you+stupid';
@@ -42,30 +54,18 @@
 
     displayResult: function (correctAns) {
       var displayScoreDiv = document.createElement('div');
-      var displayScoreText = document.createTextNode(correctAns + '/5');
+      var displayScoreText = document.createTextNode(correctAns + '/' + numQuestions);
       displayScoreDiv.appendChild(displayScoreText);
       container.appendChild(displayScoreDiv);
 
 
     },
-
-    createRestartButton: function () {
-      var restart = document.createElement('button');
-      restart.classList = "resetButton";
-      var restartText = document.createTextNode('Another quiz!');
-      restart.appendChild(restartText);
-      restart.addEventListener('click', function () {
-        drawCatPage();
-      });
-      container.appendChild(restart);
-    },
-
     updateDom: function (correctAns) {
       var domNodes = helper.clearDom();
       domNodes[0].appendChild(helper.createNode('h2','Results','results_title'));
       domNodes[1].className = "container";
       resultPage.displayResult(correctAns);
-      resultPage.createGIF(correctAns);
       resultPage.createRestartButton();
+      resultPage.createGIF(correctAns);
     }
   };
