@@ -23,6 +23,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin: 0;
 }
 
 .home-flex-container button {
@@ -104,11 +105,39 @@ header {
   padding: 0.8rem;
   border: 2px solid #50E3C2;
 }
+.results_title{
+  padding: 1rem;
+}
+.result_container{
+  flex-direction: column;
+}
+/*.result_container div:before{
+  content: "Score: "
+}*/
+.result_container div{
+  background-color: #50E3C2;
+  padding: 1.5rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.resetButton{
+  border: 2px solid #50E3C2;
+  padding: 1rem;
+  margin: 1.2rem 0;
+  background-color: white;
+  border-radius: 15px;
+  order: 1;
+}
+.video{
+  width: 100%;
+  height: 50vh;
+}
 @media screen and (min-height: 600px){
   .question_container {
     height: 80vh;
   }
-  .container{
+  .result_container{
     height: 85vh;
   }
 }
@@ -116,6 +145,9 @@ header {
   .home-flex-container button {
     width: 20rem;
     padding: 1.6rem 4rem;
+  }
+  .video{
+      margin-top: 1rem;
   }
 }
 @media screen and (min-width: 850px){
