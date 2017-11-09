@@ -63,6 +63,7 @@ var questionsPage = {
             labelNode.appendChild(inputNode);
             labelNode.appendChild(textNode);
             formNode.appendChild(labelNode);
+            labelNode.className = "question_label"
         });
         var submitNode = document.createElement('button');
         submitNode.className = "question_nextButton";
@@ -70,11 +71,13 @@ var questionsPage = {
         submitNode.appendChild(textNode);
         formNode.appendChild(submitNode);
         return formNode;
-    }, 
+    },
 
     updateQuestions: function(apiObj, catId, index) {
         domNodes = helper.clearDom();
-        domNodes[0].appendChild(helper.drawSubHeader("Question #" + (index + 1)));
+        var questionheader = helper.drawSubHeader("Question #" + (index + 1));
+        questionheader.classList.add("question_header");
+        domNodes[0].appendChild(questionheader);
         domNodes[1].className = "question_container";
         domNodes[1].appendChild(questionsPage.drawQuestion(questionsPage.getQuestion(apiObj, index)));
         var replyForm = domNodes[1].appendChild(questionsPage.drawAnswersForm(questionsPage.getAnswers(apiObj, index)));
@@ -85,7 +88,7 @@ var questionsPage = {
                 targetEntry.score = parseInt(targetEntry.score) + 1;
             }
             if (index < (apiObj.results.length - 1)) {
-    
+
                 questionsPage.updateQuestions(apiObj, catId, (index + 1))
             } else {
                 resultPage.updateDom(targetEntry.score);
