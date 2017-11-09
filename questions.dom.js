@@ -61,9 +61,6 @@ var questionsPage = {
             labelNode.appendChild(textNode);
             formNode.appendChild(labelNode);
             labelNode.className = "question_label";
-            labelNode.addEventListener('click', function(){
-                labelNode.style.background = '#50E3C2';
-            })
         });
         var submitNode = helper.createNode('button','Next','question_nextButton');
         formNode.appendChild(submitNode);
@@ -90,5 +87,16 @@ var questionsPage = {
                 resultPage.updateDom(targetEntry.score);
             }
         });
-    }
-};
+
+// highlight selected question
+        var radioArr = Array.from(document.querySelectorAll('input'));
+        var form = document.querySelector('form');
+        radioArr.forEach(function(radioButton){
+          form.addEventListener('click', function(){
+          if (radioButton.checked) {
+            radioButton.parentNode.classList.add('highlight');
+          }
+          else radioButton.parentNode.classList.remove('highlight');
+        });
+      })
+}};

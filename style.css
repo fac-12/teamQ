@@ -90,6 +90,11 @@ header {
   border: 2px solid #6E6D6E;
   position: relative;
 }
+
+.highlight {
+  background-color: #50E3C2
+}
+
 .question_answerOption{
     position: absolute;
     width: inherit;
