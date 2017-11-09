@@ -1,11 +1,13 @@
 var questionsPage = {
 
+    //convert text to standard text (without symbols, etc)
     decodeText: function (text) {
         var txt = document.createElement("textarea");
         txt.innerHTML = text;
         return txt.value;
     },
 
+    //input incorrect array and correct string, output single randomized array
     answersArray: function (incorrect, correct) {
         var orderedArray = incorrect.concat(correct);
         var random = Math.floor(Math.random() * orderedArray.length);
@@ -13,24 +15,27 @@ var questionsPage = {
         for (var i = 0; i < orderedArray.length; i++) {
             randomArray[i] = this.decodeText(orderedArray[random]);
             if ((random + 1) < 4) {
-                random++
+                random++;
             } else {
-                random = random + 1 - orderedArray.length
+                random = random + 1 - orderedArray.length;
             }
         }
-        return randomArray
+        return randomArray;
     },
 
+    //fetch specified question string from the api response, decode and return
     getQuestion: function (obj, index) {
         return this.decodeText(obj.results[index].question);
     },
 
+    //fetch answers for specified question and return in randomized array
     getAnswers: function (obj, index) {
         var incorrect = obj.results[index].incorrect_answers;
         var correct = obj.results[index].correct_answer;
         return this.answersArray(incorrect, correct);
     },
 
+    //return true if selected answer is correct
     checkCorrectAns: function (obj, index, option) {
         var correct = this.decodeText(obj.results[index].correct_answer);
         if (option === correct) {
@@ -38,14 +43,6 @@ var questionsPage = {
         } else {
             return false;
         }
-    },
-
-    drawQuestion: function (str) {
-        var questionNode = document.createElement('h3');
-        var textNode = document.createTextNode(str);
-        questionNode.appendChild(textNode);
-        questionNode.className = 'question_text';
-        return questionNode;
     },
 
     drawAnswersForm: function (arr) {
@@ -65,25 +62,21 @@ var questionsPage = {
             formNode.appendChild(labelNode);
             labelNode.className = "question_label"
         });
-        var submitNode = document.createElement('button');
-        submitNode.className = "question_nextButton";
-        var textNode = document.createTextNode('Next');
-        submitNode.appendChild(textNode);
+        var submitNode = helper.createNode('button','Next','question_nextButton');
         formNode.appendChild(submitNode);
         return formNode;
     },
 
     updateQuestions: function(apiObj, catId, index) {
         domNodes = helper.clearDom();
-        var questionheader = helper.drawSubHeader("Question #" + (index + 1));
-        questionheader.classList.add("question_header");
+        var questionheader = helper.createNode('h2','Question #' + (index + 1),'question_header');
         domNodes[0].appendChild(questionheader);
         domNodes[1].className = "question_container";
-        domNodes[1].appendChild(questionsPage.drawQuestion(questionsPage.getQuestion(apiObj, index)));
+        domNodes[1].appendChild(helper.createNode('h3',questionsPage.getQuestion(apiObj, index),'question_text'));
         var replyForm = domNodes[1].appendChild(questionsPage.drawAnswersForm(questionsPage.getAnswers(apiObj, index)));
         replyForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            var targetEntry = helper.findObj('id', catId)
+            var targetEntry = helper.findObj(categories,'id', catId)
             if (questionsPage.checkCorrectAns(apiObj, index, e.target['selection'].value)) {
                 targetEntry.score = parseInt(targetEntry.score) + 1;
             }
