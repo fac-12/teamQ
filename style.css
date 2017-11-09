@@ -134,6 +134,9 @@ header {
   height: 50vh;
 }
 @media screen and (min-height: 600px){
+  .container {
+    height: 80vh;
+  }
   .question_container {
     height: 80vh;
   }
