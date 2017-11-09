@@ -70,12 +70,12 @@ header {
   margin: 0 auto;
   background: rgba(165,222,255,0.5);
   padding: 20px;
-  height: 80vh;
 }
 
 .question_container form {
   display: flex;
   flex-direction: column;
+  margin-top: 0.5rem;
 }
 
 .question_header{
@@ -85,13 +85,14 @@ header {
   height: 10vh;
 }
 .question_label {
-  padding: 2%;
-  padding: 2%;
-  border: 2px solid #6E6D6E;
-  width: 50%;
-  align-self: center;
-  margin-top: 2%;
+  background-color: #ffffff;
   border-radius: 20px;
+  width: 15rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 5%;
+  border: 2px solid #6E6D6E;
   position: relative;
 }
 .question_answerOption{
@@ -99,7 +100,21 @@ header {
     width: inherit;
     display: none;
 }
-
+.question_nextButton{
+  align-self: flex-end;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 0.5rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.8rem;
+}
+@media screen and (min-height: 600px){
+  .question_container {
+    height: 80vh;
+  }
+}
+/*
 .question_nextButton{
   align-self: flex-end;
   padding: 10px;
@@ -109,15 +124,4 @@ header {
   margin-right: 12%;
   margin-top: 10%;
   border-radius: 10px;
-}
-
-@media screen and (min-width: 600px){
-  .question_nextButton{
-    margin-top: 0%;
-  }
-}
-@media screen and (min-width: 800px){
-  .question_label{
-    width: 30%;
-  }
-}
+}*/
