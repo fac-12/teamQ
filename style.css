@@ -14,7 +14,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(165,222,255,0.5);
+  background: #a5deff;
   padding: 1rem 5rem;
 }
 
@@ -37,22 +37,22 @@ header {
 }
 
 .home-flex-container button:nth-child(1) {
-  border: 3px solid orange;
+  border: 3px solid #e69f16;
 }
 .home-flex-container button:nth-child(2) {
-  border: 3px solid blue;
+  border: 3px solid #0066ff;
 }
 .home-flex-container button:nth-child(3) {
-  border: 3px solid red;
+  border: 3px solid #cf3535;
 }
 .home-flex-container button:nth-child(4) {
-  border: 3px solid green;
+  border: 3px solid #3dd279;
 }
 .home-flex-container button:nth-child(5) {
-  border: 3px solid yellow;
+  border: 3px solid #fffc00;
 }
 .home-flex-container button:nth-child(6) {
-  border: 3px solid indigo;
+  border: 3px solid #6a1ce9;
 }
 
 
@@ -63,7 +63,7 @@ header {
   text-align: center;
   width: 100%;
   margin: 0 auto;
-  background: rgba(165,222,255,0.5);
+  background: #a5deff;
   padding: 20px;
 }
 
@@ -125,7 +125,7 @@ header {
   border: 2px solid #50E3C2;
   padding: 1rem;
   margin: 1.2rem 0;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 15px;
   order: 1;
 }
