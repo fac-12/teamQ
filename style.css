@@ -5,8 +5,8 @@
 }
 
 header {
-  padding-left: 20px;
-  margin-bottom: 10px;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
   color: #000000;
 }
 
@@ -22,7 +22,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 1rem;
+  margin: 1.1rem;
 }
 
 .home-flex-container button {
@@ -31,7 +31,7 @@ header {
   padding: 1rem;
   cursor: pointer;
   width: 8rem;
-  height: 8rem;
+  height: 4rem;
   font-size: 1rem;
   border-radius: 1rem;
   display: flex;
@@ -139,8 +139,10 @@ header {
   margin: 0.5rem;
   cursor: pointer;
   font-size: 1.3rem;
-  padding: 0.8rem;
+  padding: 0.9rem;
   border: 2px solid #50E3C2;
+  width: 5rem;
+  height: 4rem;
 }
 .results_title{
   padding: 1rem;
@@ -148,9 +150,7 @@ header {
 .result_container{
   flex-direction: column;
 }
-/*.result_container div:before{
-  content: "Score: "
-}*/
+
 .result_container div{
   background-color: #50E3C2;
   padding: 1.5rem;
@@ -172,19 +172,19 @@ header {
 }
 @media screen and (min-height: 600px){
   .container {
-    height: 80vh;
+    height: 90vh;
   }
   .question_container {
-    height: 80vh;
+    height: 90vh;
   }
   .result_container{
-    height: 85vh;
+    height: 90vh;
   }
 }
 @media screen and (min-width: 600px){
   .home-flex-container button {
     width: 19rem;
-    height: 8rem;
+    height: 4rem;
     padding: 1.6rem 4rem;
   }
   .video{
