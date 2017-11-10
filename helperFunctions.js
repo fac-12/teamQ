@@ -4,7 +4,7 @@ var helper = {
   //return the object in array with specified id (for setting score etc)
   findObj: function(arr, key,val) {
     return arr.find(function(item) {
-      return item[key] === val;
+      return item[key] == val;
     });
   },
 
