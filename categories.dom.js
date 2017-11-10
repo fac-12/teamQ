@@ -1,9 +1,9 @@
 //global variables
 var categories = [
   {name: 'General Knowledge', id: 9, score: 0},
-  {name: 'Television', id: 14, score: 1},
+  {name: 'Television', id: 14, score: 0},
   {name: 'Science and Nature', id: 17, score: 0},
-  {name: 'Computer Science', id: 18, score: 3},
+  {name: 'Computer Science', id: 18, score: 0},
   {name: 'Sports', id: 21, score: 0},
   {name: 'Celebrities', id: 26, score: 0}
 ];
