@@ -105,3 +105,7 @@ var questionsPage = {
         });
       })
 }};
+
+if (typeof module !== 'undefined') {
+  module.exports = questionsPage;
+}
