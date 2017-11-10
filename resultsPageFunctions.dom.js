@@ -21,7 +21,7 @@
       container.appendChild(restart);
     },
     createGIF: function (correctAns) {
-      container.classList.add("result_container");
+        container.classList.add("result_container");
       var gifKey = '';
       if (correctAns === 0 | correctAns === 1 | correctAns === 2) {
         gifKey = 'are+you+stupid';
@@ -30,19 +30,26 @@
       } else {
         gifKey = 'nerd';
       }
+      var xhr = new XMLHttpRequest();
       var url = 'https:\//api.giphy.com/v1/gifs/search?api_key=46Zrp3eTdSwqvCN2qtQB4ICwh51fZSyt&q=' + gifKey + '&limit=200&offset=0&rating=G&lang=en'
-      helper.request(url,function(result) {
-        var random = Math.floor(Math.random() * result.data.length);
-        var gif = document.createElement('video');
-        var gifSource = document.createElement('source');
-        gifSource.src = result.data[random].images.original.mp4;
-        gif.appendChild(gifSource);
-        gif.setAttribute('autoplay', true);
-        gifSource.setAttribute('type', 'Video/mp4')
-        gif.setAttribute('loop', true);
-        gif.classList = "video";
-        container.appendChild(gif);
-      })
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var gifObject = JSON.parse(xhr.responseText);
+          var random = Math.floor(Math.random() * gifObject.data.length);
+          var gif = document.createElement('video');
+          var gifSource = document.createElement('source');
+          gifSource.src = gifObject.data[random].images.original.mp4;
+          gif.appendChild(gifSource);
+          gif.setAttribute('autoplay', true);
+          gifSource.setAttribute('type', 'Video/mp4')
+          gif.setAttribute('loop', true);
+          gif.classList = "video";
+          container.appendChild(gif);
+        }
+      };
+      xhr.open("GET", url, true);
+      xhr.send();
     },
 
     displayResult: function (correctAns) {
