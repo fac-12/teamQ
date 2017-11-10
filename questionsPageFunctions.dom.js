@@ -76,6 +76,10 @@ var questionsPage = {
         var replyForm = domNodes[1].appendChild(questionsPage.drawAnswersForm(questionsPage.getAnswers(apiObj, index)));
         replyForm.addEventListener('submit', function (e) {
             e.preventDefault();
+            if (!document.querySelectorAll('input:checked').length) {
+              alert("Don't you want to answer the question?");
+            }
+            else {
             var targetEntry = helper.findObj(categories,'id', catId)
             if (questionsPage.checkCorrectAns(apiObj, index, e.target['selection'].value)) {
                 targetEntry.score = parseInt(targetEntry.score) + 1;
@@ -86,6 +90,7 @@ var questionsPage = {
                 targetEntry.taken = true;
                 resultPage.updateDom(targetEntry.score);
             }
+          }
         });
 
 // highlight selected question
