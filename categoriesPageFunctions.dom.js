@@ -38,7 +38,7 @@ function drawCategories(catArr) {
     catTitle.className = "cat_title";
     catButton.appendChild(catTitle);
     //create category score and append to button if greater than 0
-    if (item.taken == true) {
+    if (item.taken === true) {
       var catScore = document.createElement('p');
       var catScoreText = document.createTextNode(item.score+'/'+numQuestions);
       catScore.appendChild(catScoreText);
@@ -80,7 +80,7 @@ function loadQuiz(url,id) {
   //make xhr request then update questions once data loaded
   helper.request(url, function(result) {
     //if session token used up then reset it and fetch data anew
-    if (result.response_code == 4) {
+    if (result.response_code === 4) {
       helper.request("https://opentdb.com/api_token.php?command=reset&token="+sessionToken, function(result) {
         getQuiz(id);
       });

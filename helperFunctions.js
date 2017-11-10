@@ -4,7 +4,7 @@ var helper = {
   //return the object in array with specified id (for setting score etc)
   findObj: function(arr, key,val) {
     return arr.find(function(item) {
-      return item[key] == val;
+      return item[key] === val;
     });
   },
 
@@ -34,7 +34,7 @@ var helper = {
   request: function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
+      if (xhr.readyState === 4 && xhr.status === 200) {
         var result = JSON.parse(xhr.responseText);
         callback(result);
       }
