@@ -1,11 +1,11 @@
 //global variables
 var categories = [
-  {name: 'General Knowledge', id: 9, score: 0},
-  {name: 'Television', id: 14, score: 0},
-  {name: 'Science and Nature', id: 17, score: 0},
-  {name: 'Computer Science', id: 18, score: 0},
-  {name: 'Sports', id: 21, score: 0},
-  {name: 'Celebrities', id: 26, score: 0}
+  {name: 'General Knowledge', id: 9, score: 0, taken: false},
+  {name: 'Television', id: 14, score: 0, taken: false},
+  {name: 'Science and Nature', id: 17, score: 0, taken: false},
+  {name: 'Computer Science', id: 18, score: 0, taken: false},
+  {name: 'Sports', id: 21, score: 0, taken: false},
+  {name: 'Celebrities', id: 26, score: 0, taken: false}
 ];
 var numQuestions = 5;
 var sessionToken = "";
@@ -38,7 +38,7 @@ function drawCategories(catArr) {
     catTitle.className = "cat_title";
     catButton.appendChild(catTitle);
     //create category score and append to button if greater than 0
-    if (item.score > 0) {
+    if (item.taken == true) {
       var catScore = document.createElement('p');
       var catScoreText = document.createTextNode(item.score+'/'+numQuestions);
       catScore.appendChild(catScoreText);

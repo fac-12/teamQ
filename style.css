@@ -35,9 +35,9 @@ header {
   font-size: 1rem;
   border-radius: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 
