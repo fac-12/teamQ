@@ -15,7 +15,6 @@ header {
   justify-content: center;
   align-items: center;
   background: #a5deff;
-  padding: 1rem 5rem;
 }
 
 .home-flex-container {
@@ -23,7 +22,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 0;
+  margin: 1rem;
 }
 
 .home-flex-container button {
@@ -31,47 +30,58 @@ header {
   margin: 0.5rem;
   padding: 1rem;
   cursor: pointer;
-  width: 15rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   font-size: 1rem;
   border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
+
 .home-flex-container button:nth-child(1) {
-  border: 3px solid #e69f16;
+  background-color: #e69d16;
+  border: 3px solid #e69d16;
 }
 .home-cat-button:nth-of-type(1):hover {
-  border: 6px solid #e69f16;
+  border: 3px solid white;
 }
 .home-flex-container button:nth-child(2) {
-  border: 3px solid #0066ff;
+  background-color: #2b91ff;
+  border: 3px solid #2b91ff;
 }
 .home-cat-button:nth-of-type(2):hover {
-  border: 6px solid #0066ff;
+  border: 3px solid white;
 }
 .home-flex-container button:nth-child(3) {
-  border: 3px solid #cf3535;
+  background-color: #d5664e;
+  border: 3px solid #d5664e;
 }
 .home-cat-button:nth-of-type(3):hover {
-  border: 6px solid #cf3535;
+  border: 3px solid white;
 }
 .home-flex-container button:nth-child(4) {
+  background-color: #3dd279;
   border: 3px solid #3dd279;
 }
 .home-cat-button:nth-of-type(4):hover {
-  border: 6px solid #3dd279;
+  border: 3px solid white;
 }
 .home-flex-container button:nth-child(5) {
+  background-color: #fffc00;
   border: 3px solid #fffc00;
 }
 .home-cat-button:nth-of-type(5):hover {
-  border: 6px solid #fffc00;
+  border: 3px solid white;
 }
 .home-flex-container button:nth-child(6) {
-  border: 3px solid #6a1ce9;
+  background-color: #a862ee;
+  border: 3px solid #a862ee;
 }
 .home-cat-button:nth-of-type(6):hover {
-  border: 6px solid #6a1ce9;
+  border: 3px solid white;
 }
 
 
@@ -173,7 +183,8 @@ header {
 }
 @media screen and (min-width: 600px){
   .home-flex-container button {
-    width: 20rem;
+    width: 19rem;
+    height: 8rem;
     padding: 1.6rem 4rem;
   }
   .video{
