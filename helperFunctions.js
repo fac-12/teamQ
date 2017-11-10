@@ -41,7 +41,7 @@ var helper = {
     };
     xhr.open("GET", url, true);
     xhr.send();
-  }, 
+  },
 
   //create and return node with specified text and class
   createNode: function(type,text,className) {
