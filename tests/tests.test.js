@@ -11,6 +11,3 @@ test('findObj function finds correct item',function(t) {
     t.deepEquals(helper.findObj(categories,'id',14),{name: 'Television', id: 14, score: 0}, 'Function returns object specified.');
     t.end();
 });
-
-
-
