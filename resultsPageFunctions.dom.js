@@ -2,13 +2,6 @@
 
   var resultPage = {
 
-    // createHeaderResults: function () {
-    //   var title = document.createTextNode('Result');
-    //   var header = document.querySelector('header');
-    //   header.classList = "resultTitle";
-    //   header.appendChild(title);
-    //   return header;
-    // },
     createRestartButton: function () {
       var restart = document.createElement('button');
       restart.classList = "resetButton";
