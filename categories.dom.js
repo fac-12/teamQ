@@ -35,12 +35,14 @@ function drawCategories(catArr) {
     var catTitle = document.createElement('h4');
     var catTitleText = document.createTextNode(item.name);
     catTitle.appendChild(catTitleText);
+    catTitle.className = "cat_title";
     catButton.appendChild(catTitle);
     //create category score and append to button if greater than 0
     if (item.score > 0) {
       var catScore = document.createElement('p');
       var catScoreText = document.createTextNode(item.score+'/'+numQuestions);
       catScore.appendChild(catScoreText);
+      catScore.className = "cat_score";
       catButton.appendChild(catScore);
     }
     //create button listener
