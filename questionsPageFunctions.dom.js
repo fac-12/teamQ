@@ -81,9 +81,9 @@ var questionsPage = {
                 targetEntry.score = parseInt(targetEntry.score) + 1;
             }
             if (index < (apiObj.results.length - 1)) {
-
                 questionsPage.updateQuestions(apiObj, catId, (index + 1))
             } else {
+                targetEntry.taken = true;
                 resultPage.updateDom(targetEntry.score);
             }
         });
