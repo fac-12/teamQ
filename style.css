@@ -32,6 +32,7 @@ header {
   padding: 1rem;
   cursor: pointer;
   width: 15rem;
+  height: 10rem;
   font-size: 1rem;
   border-radius: 1rem;
 }
@@ -39,20 +40,38 @@ header {
 .home-flex-container button:nth-child(1) {
   border: 3px solid #e69f16;
 }
+.home-cat-button:nth-of-type(1):hover {
+  border: 6px solid #e69f16;
+}
 .home-flex-container button:nth-child(2) {
   border: 3px solid #0066ff;
+}
+.home-cat-button:nth-of-type(2):hover {
+  border: 6px solid #0066ff;
 }
 .home-flex-container button:nth-child(3) {
   border: 3px solid #cf3535;
 }
+.home-cat-button:nth-of-type(3):hover {
+  border: 6px solid #cf3535;
+}
 .home-flex-container button:nth-child(4) {
   border: 3px solid #3dd279;
+}
+.home-cat-button:nth-of-type(4):hover {
+  border: 6px solid #3dd279;
 }
 .home-flex-container button:nth-child(5) {
   border: 3px solid #fffc00;
 }
+.home-cat-button:nth-of-type(5):hover {
+  border: 6px solid #fffc00;
+}
 .home-flex-container button:nth-child(6) {
   border: 3px solid #6a1ce9;
+}
+.home-cat-button:nth-of-type(6):hover {
+  border: 6px solid #6a1ce9;
 }
 
 
@@ -90,6 +109,9 @@ header {
   border: 2px solid #6E6D6E;
   position: relative;
 }
+.question_label:hover {
+  color: #F5A623;
+} 
 
 .highlight {
   background-color: #50E3C2
