@@ -61,6 +61,9 @@ var questionsPage = {
             labelNode.appendChild(textNode);
             formNode.appendChild(labelNode);
             labelNode.className = "question_label";
+            labelNode.addEventListener('click', function(){
+                labelNode.style.background = '#50E3C2';
+            })
         });
         var submitNode = helper.createNode('button','Next','question_nextButton');
         formNode.appendChild(submitNode);
@@ -77,26 +80,20 @@ var questionsPage = {
         replyForm.addEventListener('submit', function (e) {
             e.preventDefault();
             var targetEntry = helper.findObj(categories,'id', catId)
+            if (!document.querySelectorAll('input:checked').length) {
+              alert("Don't you want to answer the question?");
+            }
+            else {
             if (questionsPage.checkCorrectAns(apiObj, index, e.target['selection'].value)) {
                 targetEntry.score = parseInt(targetEntry.score) + 1;
             }
             if (index < (apiObj.results.length - 1)) {
+
                 questionsPage.updateQuestions(apiObj, catId, (index + 1))
             } else {
-                targetEntry.taken = true;
                 resultPage.updateDom(targetEntry.score);
             }
-        });
-
-// highlight selected question
-        var radioArr = Array.from(document.querySelectorAll('input'));
-        var form = document.querySelector('form');
-        radioArr.forEach(function(radioButton){
-          form.addEventListener('click', function(){
-          if (radioButton.checked) {
-            radioButton.parentNode.classList.add('highlight');
           }
-          else radioButton.parentNode.classList.remove('highlight');
         });
-      })
-}};
+    }
+};
