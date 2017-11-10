@@ -26,10 +26,8 @@ There is one API call to the giphy database, which fetches a random gif that cor
 
 **If we had more time…**
 - we would continue to work on the css and visual display
-- we would make each button respond to hover
 - we would show the user which questions and answers were correct or incorrect
 - we would experiment with making the javascript linked to different html documents so the user can easily go back in the browser if they so desire.
 
 **Things we struggled with/have questions about:**
 - How to incorporate TDD when there is minimal data manipulation involved in the app. What little there is has to do with randomization. Most of our functions have to do with fetching data through APIs and displaying it dynamically on the DOM.
-- 
